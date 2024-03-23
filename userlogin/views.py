@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from testing.models import Product
 
 
 
@@ -17,14 +18,14 @@ def signin(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponse('User logged in successfully')
+            return render(request, 'userlogin/productview.html')
         if '@gmail.com' in username:
             user = User.objects.filter(email=username).first()
             if user is not None:                #tasmi77#tasmi@gmail.com#12345
                 username = user.username
         if user is not None:
             login(request, user)
-            return HttpResponse('User logged in successfully')
+            return render(request, 'userlogin/productview.html')
         if '@admin.com' in username:
             user = User.objects.filter(email=username).first()
             if user is not None:                #sohag@admin.com#asdfg
@@ -70,3 +71,6 @@ def signout(request):
     logout(request)
     messages.success(request, "Logged Out Successfully!")
     return redirect('home')
+def productview(request):
+    products = Product.objects.all()
+    return render(request, 'userlogin/productview.html', {'products': products})
