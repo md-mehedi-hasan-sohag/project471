@@ -65,6 +65,7 @@ def signup(request):
         return render(request, 'userlogin/signin.html')
 
     return render(request, 'userlogin/signup.html')
+
 def signout(request):
     logout(request)
     messages.success(request, "Logged Out Successfully!")
