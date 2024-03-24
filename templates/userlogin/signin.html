@@ -207,7 +207,7 @@
   <!-- end hero area -->
   <!-- form area start-->
   <div class="signup-container">
-  <form class="signup-form" action="{% url 'userlogin/productview'%}" method="post">
+  <form class="signup-form" action="{% url 'productview'%}" method="post">
     {% csrf_token %}
     <h2>Login</h2>
     {% if error %}

@@ -233,7 +233,7 @@
               <td>{{ product.country }}</td>
               <td><img src="{{ product.img.url }}" alt="{{ product.name }}" style="max-width: 100px; max-height: 100px;"></td>
               <td>{{ product.description }}</td>
-              <td><button>Add to cart</button></td>
+              <td><button><a href="{% url 'add_to_cart' product.id %}"></a>Add to cart</button></td>
           </tr>
           {% endfor %}
       </tbody>
